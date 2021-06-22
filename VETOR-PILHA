@@ -1,0 +1,113 @@
+#include <iostream>
+using namespace std;
+#include <locale.h>
+#define MAX 30
+
+struct Pilha
+{
+int qtde;
+float elementos[MAX];
+
+};
+Pilha* init() {
+Pilha *p = new Pilha;
+p->qtde = 0;
+
+return p;
+
+/*instaciada, ponteiro*/
+}
+
+int push(Pilha *p, float v){
+int podeEmpilhar = (p->qtde <MAX);
+if (podeEmpilhar){
+p->elementos[p->qtde++] = v;
+}
+return podeEmpilhar;
+}
+
+
+void print (Pilha *p){
+cout << "quantidade de elementos na pilha" << p->qtde<<endl;
+for (int i=p->qtde-1; i>=0; --i){
+cout<<p->elementos[i]<<endl;
+}
+}
+void printpar (Pilha *par){
+int v,z;
+cout << "Os numeros pares são: "<<endl;
+for (int i=par->qtde-1; i>=0; --i){
+v=par->elementos[i];
+if (v % 2 ==0){
+cout<<v<<endl;
+}
+else {
+z;
+}
+}
+}
+void printimpar (Pilha *impar){
+int v,z;
+cout << "Os numeros impares são: "<<endl;
+for (int i=impar->qtde-1; i>=0; --i){
+v=impar->elementos[i];
+if (v % 2 ==0){
+z;
+}
+else {
+cout<<v<<endl;
+}
+}
+}
+int isEmpty(Pilha *p){
+return (p->qtde == 0);
+}
+int count(Pilha *p){
+return (p->qtde);
+}
+float pop(Pilha *p){
+int podeDesempilhar = (p->qtde >0);
+float v;
+if (podeDesempilhar){
+v=p->elementos[p->qtde-1];
+p->qtde--;
+}
+else {
+v = -1;
+}
+return v;
+
+}
+int main(int argc, char** argv)
+{
+setlocale(LC_ALL, "Portuguese");
+Pilha *pilhaFloat;
+pilhaFloat = new Pilha;
+pilhaFloat = init();
+int numero;
+float num=0;
+for(int i=1; i<=30; i++){
+cout<<"Digite o "<<i<<"º valor: ";
+cin>>numero;
+if (numero>num){
+push(pilhaFloat, numero);
+}
+else
+{
+cout <<"digite um numero maior que " << num << ": ";
+cin>>numero;
+push(pilhaFloat, numero);
+}
+num =numero;
+        system("CLS");
+}
+     cout<<endl;
+printpar(pilhaFloat);
+cout<<endl;
+printimpar(pilhaFloat);
+     cout<<endl;
+for(int i=0; i<30; i++){
+cout << "Valor desempilhado: " << pop(pilhaFloat) << endl;
+}
+return 0;
+}
